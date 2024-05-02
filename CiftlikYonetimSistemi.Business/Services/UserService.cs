@@ -203,8 +203,10 @@ namespace CiftlikYonetimSistemi.Business.Services
 			// Assuming we use a basic query to retrieve the user by username
 			// You would need to adjust the query to match your database schema and security practices, e.g., using parameterized queries
 			string query = "SELECT * FROM User WHERE email = @email and password = @password";
-			var user = await GetOne(query, new { email = loginDTO.Email, password = loginDTO.Password });
-			return user;
+
+            var user = await _userRepository.GetOne(query, new { email = loginDTO.Email, password = loginDTO.Password });
+            
+            return user;
 			
 		}
 
