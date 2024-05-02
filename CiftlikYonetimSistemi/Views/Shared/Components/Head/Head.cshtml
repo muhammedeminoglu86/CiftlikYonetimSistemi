@@ -1,0 +1,24 @@
+﻿@model CiftlikYonetimSistemi.Domain.Models.Head
+<head>
+	<base href="" />
+	<title>@Model.Title</title>
+	<meta charset="@Model.Charset" />
+	<meta name="description" content='@Model.Description' />
+	<meta name="keywords" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta property="og:locale" content='@Model.OgLocale' />
+	<meta property="og:type" content='@Model.OgType' />
+	<meta property="og:title" content='@Model.OgTitle' />
+	<meta property="og:url" content='@Model.OgUrl' />
+	<meta property="og:site_name" content='@Model.OgSiteName' />
+	<link rel="canonical" href='@Model.Canonical' />
+	@{
+		@foreach (var item in ViewBag.ResolvedHeadValues)
+		{
+			@Html.Raw(item)
+		}
+	}
+	
+	<!--end::Global Stylesheets Bundle-->
+	<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
+</head>

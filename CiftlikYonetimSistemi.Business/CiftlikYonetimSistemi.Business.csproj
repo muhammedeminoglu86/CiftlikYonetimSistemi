@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CiftlikYonetimSistemi.DAL\CiftlikYonetimSistemi.DAL.csproj" />
+    <ProjectReference Include="..\CiftlikYonetimSistemi.Domain\CiftlikYonetimSistemi.Domain.csproj" />
+    <ProjectReference Include="..\CiftlikYonetimSistemi.Extension\CiftlikYonetimSistemi.Extension.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
+  </ItemGroup>
+
+</Project>

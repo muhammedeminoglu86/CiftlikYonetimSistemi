@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CiftlikYonetimSistemi", "CiftlikYonetimSistemi\CiftlikYonetimSistemi.csproj", "{F2F5166F-3DEB-47E4-853E-661B6AD04893}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiftlikYonetimSistemi.Domain", "CiftlikYonetimSistemi.Domain\CiftlikYonetimSistemi.Domain.csproj", "{3AB20339-F667-408A-87C9-C23E26BF86BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiftlikYonetimSistemi.DAL", "CiftlikYonetimSistemi.DAL\CiftlikYonetimSistemi.DAL.csproj", "{8D1DE892-1025-433B-8B3D-F633339769C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiftlikYonetimSistemi.Business", "CiftlikYonetimSistemi.Business\CiftlikYonetimSistemi.Business.csproj", "{000DEFCF-0C5D-4E5A-B3BF-7FF20D3662DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiftlikYonetimSistemi.Extension", "CiftlikYonetimSistemi.Extension\CiftlikYonetimSistemi.Extension.csproj", "{DAFCE5D2-2A85-4C49-B3A3-39E589D02E1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiftlikYonetimSistemi.WebApi", "CiftlikYonetimSistemi.WebApi\CiftlikYonetimSistemi.WebApi.csproj", "{7E8C6EA1-4D72-4923-987A-FECFB21DB471}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2F5166F-3DEB-47E4-853E-661B6AD04893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F5166F-3DEB-47E4-853E-661B6AD04893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F5166F-3DEB-47E4-853E-661B6AD04893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F5166F-3DEB-47E4-853E-661B6AD04893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB20339-F667-408A-87C9-C23E26BF86BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB20339-F667-408A-87C9-C23E26BF86BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB20339-F667-408A-87C9-C23E26BF86BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB20339-F667-408A-87C9-C23E26BF86BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1DE892-1025-433B-8B3D-F633339769C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1DE892-1025-433B-8B3D-F633339769C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1DE892-1025-433B-8B3D-F633339769C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1DE892-1025-433B-8B3D-F633339769C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{000DEFCF-0C5D-4E5A-B3BF-7FF20D3662DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{000DEFCF-0C5D-4E5A-B3BF-7FF20D3662DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{000DEFCF-0C5D-4E5A-B3BF-7FF20D3662DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{000DEFCF-0C5D-4E5A-B3BF-7FF20D3662DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFCE5D2-2A85-4C49-B3A3-39E589D02E1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFCE5D2-2A85-4C49-B3A3-39E589D02E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFCE5D2-2A85-4C49-B3A3-39E589D02E1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFCE5D2-2A85-4C49-B3A3-39E589D02E1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8C6EA1-4D72-4923-987A-FECFB21DB471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8C6EA1-4D72-4923-987A-FECFB21DB471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8C6EA1-4D72-4923-987A-FECFB21DB471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8C6EA1-4D72-4923-987A-FECFB21DB471}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F4091F5-BB00-4BC4-9523-0E8CF05C39E9}
+	EndGlobalSection
+EndGlobal
