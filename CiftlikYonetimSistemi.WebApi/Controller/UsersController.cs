@@ -39,12 +39,16 @@ namespace CiftlikYonetimSistemi.WebApi.Controller
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(User user)
+        public async Task<IActionResult> CreateUser(UserDto user)
         {
             try
             {
                 var createdUser = await _userService.AddAsync(user);
-                return Ok();
+                if (createdUser == -1)
+                    return BadRequest("Username already exists.");
+                else if(createdUser == -2)
+                    return BadRequest("Email already exists.");
+                return Ok(new { Message = "User created successfully", UserId = createdUser });
             }
             catch (Exception ex)
             {

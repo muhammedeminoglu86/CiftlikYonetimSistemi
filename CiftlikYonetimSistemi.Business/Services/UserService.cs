@@ -31,39 +31,47 @@ namespace CiftlikYonetimSistemi.Business.Services
 			_companyUserMappingRepository = companyUserMappingRepository;
 		}
 
-		public async Task<int> AddAsync(User user)
-		{
-			using (var connection = _context.CreateConnection())
-			{
-				using (var transaction = connection.BeginTransaction())
-				{
-					try
-					{
-						var id = await _userRepository.AddAsync(user, connection, transaction);
-						transaction.Commit();
+        public async Task<int> AddAsync(UserDto user)
+        {
+            var newUser = userDTO2User(user);
+            IDbConnection connection = null;
+            IDbTransaction transaction = null;
 
-						try
-						{
-							string cacheKey = $"user_{id}";
-							await _redis.StringSetAsync(cacheKey, JsonSerializer.Serialize(user), TimeSpan.FromMinutes(60));
-						}
-						catch (Exception ex)
-						{
-							Console.WriteLine($"Redis cache update failed: {ex.Message}");
-						}
+			var varmi = GetOne("select * from User where email = @email", new { email = user.email });
+			if (varmi != null)
+				return -2;
+            varmi = GetOne("select * from User where username = @username", new { username = user.username });
+            if (varmi != null)
+                return -1;
 
-						return id;
-					}
-					catch (Exception)
-					{
-						transaction.Rollback();
-						throw;
-					}
-				}
-			}
-		}
+            try
+            {
+                connection = _context.CreateConnection();
+                connection.Open();
+                transaction = connection.BeginTransaction();
 
-		public async Task UpdateAsync(User user)
+                var id = await _userRepository.AddAsync(newUser, connection, transaction);
+                transaction.Commit();
+
+                string cacheKey = $"user_{id}";
+                await _redis.StringSetAsync(cacheKey, JsonSerializer.Serialize(user), TimeSpan.FromMinutes(60));
+
+                return id;
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                Console.WriteLine($"Exception occurred: {ex.Message}");
+                throw;  // Rethrow the exception to handle it further up the call stack.
+            }
+            finally
+            {
+                transaction?.Dispose();
+                connection?.Close();
+                connection?.Dispose();
+            }
+        }
+        public async Task UpdateAsync(User user)
 		{
 			using (var connection = _context.CreateConnection())
 			{
@@ -209,6 +217,19 @@ namespace CiftlikYonetimSistemi.Business.Services
             return user;
 			
 		}
+
+        public User userDTO2User(UserDto userDto)
+        {
+            return new User
+            {
+                Username = userDto.username,
+                Email = userDto.email,
+                Password = userDto.password,
+				UserTypeId = userDto.usertypeid,
+				Isactive = 1
+                // Set other properties as needed
+            };
+        }
 
 	}
 }
