@@ -37,7 +37,7 @@ namespace CiftlikYonetimSistemi.Business.Services
             IDbConnection connection = null;
             IDbTransaction transaction = null;
 
-			var varmi = GetOne("select * from User where email = @email", new { email = user.email });
+			var varmi = GetOne("select * from User where email = @email", new { email = user.email }).Result;
 			if (varmi != null)
 				return -2;
             varmi = GetOne("select * from User where username = @username", new { username = user.username });
