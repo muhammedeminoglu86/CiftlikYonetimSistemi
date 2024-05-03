@@ -167,27 +167,27 @@ namespace CiftlikYonetimSistemi.Business.Services
 		public async Task<User> GetOne(string query, object param)
 		{
 			string cacheKey = "";
-			if (!(param is { } parameters && parameters.GetType().GetProperty("Id")?.GetValue(parameters) is int id) || id <= 0)
-			{
-				var queryHash = _hashCreator.CreateHash(query);
-				cacheKey = $"user_{queryHash}";
-			}
-			else
-				cacheKey = $"user_{id}";
+			//if (!(param is { } parameters && parameters.GetType().GetProperty("Id")?.GetValue(parameters) is int id) || id <= 0)
+			//{
+			//	var queryHash = _hashCreator.CreateHash(query);
+			//	cacheKey = $"user_{queryHash}";
+			//}
+			//else
+			//	cacheKey = $"user_{id}";
 
-			try
-			{
-				var cachedUser = await _redis.StringGetAsync(cacheKey);
+			//try
+			//{
+			//	var cachedUser = await _redis.StringGetAsync(cacheKey);
 
-				if (!cachedUser.IsNullOrEmpty)
-				{
-					return JsonSerializer.Deserialize<User>(cachedUser);
-				}
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine($"Redis access failed: {ex.Message}");
-			}
+			//	if (!cachedUser.IsNullOrEmpty)
+			//	{
+			//		return JsonSerializer.Deserialize<User>(cachedUser);
+			//	}
+			//}
+			//catch (Exception ex)
+			//{
+			//	Console.WriteLine($"Redis access failed: {ex.Message}");
+			//}
 
 			var user = await _userRepository.GetOne(query, param);
 			if (user != null)
