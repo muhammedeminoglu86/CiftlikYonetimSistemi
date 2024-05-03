@@ -40,7 +40,7 @@ namespace CiftlikYonetimSistemi.Business.Services
 			var varmi = GetOne("select * from User where email = @email", new { email = user.email }).Result;
 			if (varmi != null)
 				return -2;
-            varmi = GetOne("select * from User where username = @username", new { username = user.username });
+            varmi = GetOne("select * from User where username = @username", new { username = user.username }).Result;
             if (varmi != null)
                 return -1;
 
