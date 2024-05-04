@@ -44,7 +44,7 @@ public class UserRepository : IUserRepository
     public async Task UpdateAsync(User user, IDbConnection connection = null, IDbTransaction transaction = null)
 	{
 		var query = @"
-            UPDATE [User]
+            UPDATE User
             SET Username = @Username, Password = @Password, Email = @Email, IsActive = @IsActive, UserTypeId = @UserTypeId 
             WHERE Id = @Id;
         ";

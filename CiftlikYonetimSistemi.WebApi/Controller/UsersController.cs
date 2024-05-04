@@ -1,5 +1,6 @@
 ﻿using CiftlikYonetimSistemi.Business.DTO;
 using CiftlikYonetimSistemi.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace CiftlikYonetimSistemi.WebApi.Controller
 {
+    [Authorize(AuthenticationSchemes = "BasicAuthentication")]
+
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
