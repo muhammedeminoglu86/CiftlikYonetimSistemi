@@ -14,32 +14,32 @@ public class AnimalSubTypeRepository : IAnimalSubTypeRepository
 	{
 		_context = context;
 	}
-	public async Task<IEnumerable<AnimalSubType>> GetAllAsync(string query, object param)
-	{
-		using (var connection = _context.CreateConnection())
-		{
-			return await connection.QueryAsync<AnimalSubType>(query, param);
-		}
-	}
 
-	public async Task<AnimalSubType> GetOne(string query, object param)
-	{
-		using (var connection = _context.CreateConnection())
-		{
-			return await connection.QueryFirstOrDefaultAsync<AnimalSubType>(query, param);
-		}
-	}
-	public async Task<int> AddAsync(AnimalSubType subType)
-	{
-		var query = "INSERT INTO AnimalSubType (AnimalTypeId, AnimalSubTypeName, Logo, IsActive) VALUES (@AnimalTypeId, @AnimalSubTypeName, @Logo, @IsActive);SELECT CAST(SCOPE_IDENTITY() as int);";
-		using (var connection = _context.CreateConnection())
-		{
-			var id = await connection.ExecuteScalarAsync<int>(query);
-			return id;
-		}
-	}
+    public async Task<IEnumerable<AnimalSubType>> GetAllAsync(string query, object param, IDbConnection connection = null, IDbTransaction transaction = null)
+    {
+        var conn = connection ?? _context.CreateConnection();
+        return await conn.QueryAsync<AnimalSubType>(query, param, transaction);
+    }
 
-	public async Task UpdateAsync(AnimalSubType subType)
+    public async Task<AnimalSubType> GetOne(string query, object param, IDbConnection connection = null, IDbTransaction transaction = null)
+    {
+        var conn = connection ?? _context.CreateConnection();
+        return await conn.QueryFirstOrDefaultAsync<AnimalSubType>(query, param, transaction);
+    }
+
+   
+    public async Task<int> AddAsync(AnimalSubType user, IDbConnection connection, IDbTransaction transaction)
+    {
+        var query = @"
+        INSERT INTO AnimalSubType (AnimalTypeId, AnimalSubTypeName, Logo, IsActive) VALUES (@AnimalTypeId, @AnimalSubTypeName, @Logo, @IsActive);
+        SELECT LAST_INSERT_ID();
+    ";
+        // No new connection is created here, we use the provided one.
+        var id = await connection.ExecuteScalarAsync<int>(query, user, transaction);
+        return id;
+    }
+
+    public async Task UpdateAsync(AnimalSubType subType)
 	{
 		var query = "UPDATE AnimalSubType SET AnimalTypeId = @AnimalTypeId, AnimalSubTypeName = @AnimalSubTypeName, Logo = @Logo, IsActive = @IsActive WHERE Id = @Id";
 		using (var connection = _context.CreateConnection())

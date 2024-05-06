@@ -7,7 +7,7 @@ public partial class AnimalType
 {
     public int Id { get; set; }
 
-    public string? Animaltype1 { get; set; }
+    public string? Animaltype { get; set; }
 
     public string? Typedesc { get; set; }
 
