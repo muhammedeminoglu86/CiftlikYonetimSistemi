@@ -31,8 +31,6 @@ namespace CiftlikYonetimSistemi.Business.Services
             _companyUserMappingRepository = companyUserMappingRepository;
         }
 
-<<<<<<< HEAD
-
 
         public async Task<int> AddAsync(AnimalTypeDTO animaltype)
         {
@@ -74,7 +72,6 @@ namespace CiftlikYonetimSistemi.Business.Services
         }
 
 
-=======
         public async Task<int> AddAsync(AnimalType animaltype, IDbConnection connection, IDbTransaction transaction)
         {
             try
@@ -88,7 +85,6 @@ namespace CiftlikYonetimSistemi.Business.Services
             }
         }
 
->>>>>>> 06ae38778f6139afe083f76946bfe461a40b2f9c
         public async Task UpdateAsync(AnimalType animaltype)
         {
             try
@@ -141,15 +137,11 @@ namespace CiftlikYonetimSistemi.Business.Services
             return new AnimalType
             {
                 Id = animalType.id,
-<<<<<<< HEAD
+
                 Animaltype = animalType.animaltype,
                 Typedesc = animalType.typedec,
                 Userid = -1,
-                isactive = 1
-=======
-                Animaltype = animalType.Animaltype,
-                Typedesc = animalType.Typedesc
->>>>>>> 06ae38778f6139afe083f76946bfe461a40b2f9c
+                isactive = 1,
             };
         }
 
