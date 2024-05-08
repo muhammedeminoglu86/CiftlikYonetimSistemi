@@ -30,6 +30,7 @@ namespace CiftlikYonetimSistemi.Business.Services
             _companyUserMappingRepository = companyUserMappingRepository;
         }
 
+<<<<<<< HEAD
       
         public async Task<int> AddAsync(AnimalSubTypeDTO animalsubtype)
         {
@@ -76,6 +77,29 @@ namespace CiftlikYonetimSistemi.Business.Services
                 var animalsubtypex = AnimalSubtypeToDto(animalSubtype);
 
                 await _animalSubtypeRepository.UpdateAsync(animalsubtypex);
+=======
+        public async Task<int> AddAsync(AnimalSubType animalSubtype, IDbConnection connection, IDbTransaction transaction)
+        {
+            try
+            {
+                var id = await _animalSubtypeRepository.AddAsync(animalSubtype, connection, transaction);
+
+              
+
+                return id;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task UpdateAsync(AnimalSubType animalSubtype)
+        {
+            try
+            {
+                await _animalSubtypeRepository.UpdateAsync(animalSubtype);
+>>>>>>> 06ae38778f6139afe083f76946bfe461a40b2f9c
 
                 string cacheKey = $"animalsubtype_{animalSubtype.Id}";
                

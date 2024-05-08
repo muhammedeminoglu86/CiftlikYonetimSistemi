@@ -31,6 +31,7 @@ public class AnimalTypeRepository : IAnimalTypeRepository
 
     public async Task<int> AddAsync(AnimalType type, IDbConnection connection, IDbTransaction transaction)
     {
+<<<<<<< HEAD
         var query = @"INSERT INTO AnimalType (animaltype, typedesc, logo, isactive, userid) 
         VALUES (@animaltype, @typedesc, @logo, @isactive, @userid);
         SELECT LAST_INSERT_ID();";
@@ -46,6 +47,16 @@ public class AnimalTypeRepository : IAnimalTypeRepository
         }
 
 
+=======
+        var query = @"
+        INSERT INTO AnimalType (AnimalType, TypeDesc, Logo, IsActive, UserId) 
+        VALUES (@AnimalType, @TypeDesc, @Logo, @IsActive, @UserId);
+        SELECT LAST_INSERT_ID();
+    ";
+        // No new connection is created here, we use the provided one.
+        var id = await connection.ExecuteScalarAsync<int>(query, type, transaction);
+        return id;
+>>>>>>> 06ae38778f6139afe083f76946bfe461a40b2f9c
     }
 
     public async Task UpdateAsync(AnimalType type)
