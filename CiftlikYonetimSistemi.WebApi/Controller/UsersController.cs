@@ -28,16 +28,20 @@ namespace CiftlikYonetimSistemi.WebApi.Controller
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userService.GetAllAsync("select * from User", null);
+            foreach(var item in users)
+            {
+				item.Password = null;
+			}
             return Ok(users);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
-            var user = await _userService.GetOne("select * from User where id = @id", new {id = id});
+            var user = await _userService.GetOne("select * from User where id = @id", new {id = id}); 
             if (user == null)
                 return NotFound();
-
+            user.Password = null;
             return Ok(user);
         }
 
