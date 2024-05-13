@@ -30,10 +30,8 @@ public class AnimalSubTypeRepository : IAnimalSubTypeRepository
    
     public async Task<int> AddAsync(AnimalSubType user, IDbConnection connection, IDbTransaction transaction)
     {
-        var query = @"
-        INSERT INTO AnimalSubType (AnimalTypeId, AnimalSubTypeName, Logo, IsActive) VALUES (@AnimalTypeId, @AnimalSubTypeName, @Logo, @IsActive);
-        SELECT LAST_INSERT_ID();
-    ";
+        var query = @"INSERT INTO AnimalSubType (Animaltypeid, Animalsubtypename, Logo, isactive) VALUES (@Animaltypeid, @Animalsubtypename, @Logo, 1);
+        SELECT LAST_INSERT_ID();";
         // No new connection is created here, we use the provided one.
         var id = await connection.ExecuteScalarAsync<int>(query, user, transaction);
         return id;

@@ -52,7 +52,8 @@ namespace CiftlikYonetimSistemi.WebApi.Controller
                 var createdUser = await _animalSubTypeService.AddAsync(animalsubtype);
                 if (createdUser == -1)
                     return BadRequest("animalsubtype already exists.");
-               
+                if (createdUser == -2)
+                    return BadRequest("animal type not found.");
                 return Ok(new { Message = "Animal Subtype created successfully", UserId = createdUser });
             }
             catch (Exception ex)

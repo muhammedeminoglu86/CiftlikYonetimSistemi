@@ -21,13 +21,15 @@ namespace CiftlikYonetimSistemi.Business.Services
         private readonly IConnectionMultiplexer _redisConnection;
         private readonly CreateMD5Hash _hashCreator;
         private readonly ICompanyUserMappingRepository _companyUserMappingRepository;
+        private readonly IAnimalTypeRepository _animalTypeRepository;
 
-        public AnimalSubTypeService(IAnimalSubTypeRepository animalSubtypeRepository, DapperContext context, IConnectionMultiplexer redisConnection, CreateMD5Hash createMD5Hash, ICompanyUserMappingRepository companyUserMappingRepository)
+        public AnimalSubTypeService(IAnimalSubTypeRepository animalSubtypeRepository, DapperContext context, IConnectionMultiplexer redisConnection, CreateMD5Hash createMD5Hash, ICompanyUserMappingRepository companyUserMappingRepository, IAnimalTypeRepository animalTypeRepository)
         {
             _animalSubtypeRepository = animalSubtypeRepository;
             _context = context;
             _redisConnection = redisConnection;
             _companyUserMappingRepository = companyUserMappingRepository;
+            _animalTypeRepository = animalTypeRepository;
         }
   
         public async Task<int> AddAsync(AnimalSubTypeDTO animalsubtype)
@@ -36,12 +38,16 @@ namespace CiftlikYonetimSistemi.Business.Services
             IDbConnection connection = null;
             IDbTransaction transaction = null;
 
-            var varmi = GetOne("select * from AnimalSubtype where animaltypeid = @animaltypeid and animalsubtypename = @animalsubtypename", new { animalsubtypeid = animalsubtypex.Animaltypeid }).Result;
+            var varmi = GetOne("select * from AnimalSubType where animaltypeid = @animaltypeid and animalsubtypename = @animalsubtypename", new { animaltypeid = animalsubtype.Animaltypeid, animalsubtypename = animalsubtype.Animalsubtypename }).Result;
             if (varmi != null)
                 return -1;
-           
 
-            try
+            var varmix = _animalTypeRepository.GetOne("select * from AnimalType where id = @id", new { id = animalsubtypex.Animaltypeid }).Result;
+            if (varmix == null)
+                return -2;
+
+
+			try
             {
                 connection = _context.CreateConnection();
                 connection.Open();
@@ -131,7 +137,8 @@ namespace CiftlikYonetimSistemi.Business.Services
                 Id = animalSubtype.Id,
                 Animalsubtypename = animalSubtype.Animalsubtypename,
                 Animaltypeid = animalSubtype.Animaltypeid,
-                Logo = animalSubtype.Logo
+                Logo = animalSubtype.Logo,
+                Isactive = 1
             };
         }
     }
