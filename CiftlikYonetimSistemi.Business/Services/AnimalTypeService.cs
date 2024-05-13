@@ -139,7 +139,7 @@ namespace CiftlikYonetimSistemi.Business.Services
                 Id = animalType.id,
 
                 Animaltype = animalType.animaltype,
-                Typedesc = animalType.typedec,
+                Typedesc = animalType.typedesc,
                 Userid = -1,
                 isactive = 1,
             };

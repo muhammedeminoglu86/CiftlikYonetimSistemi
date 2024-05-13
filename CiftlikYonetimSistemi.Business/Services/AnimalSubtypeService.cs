@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CiftlikYonetimSistemi.Business.Services
 {
-    public class AnimalSubtypeService : IAnimalSubTypeService
+    public class AnimalSubTypeService : IAnimalSubTypeService
     {
         private readonly IAnimalSubTypeRepository _animalSubtypeRepository;
         private readonly DapperContext _context;
@@ -22,7 +22,7 @@ namespace CiftlikYonetimSistemi.Business.Services
         private readonly CreateMD5Hash _hashCreator;
         private readonly ICompanyUserMappingRepository _companyUserMappingRepository;
 
-        public AnimalSubtypeService(IAnimalSubTypeRepository animalSubtypeRepository, DapperContext context, IConnectionMultiplexer redisConnection, CreateMD5Hash createMD5Hash, ICompanyUserMappingRepository companyUserMappingRepository)
+        public AnimalSubTypeService(IAnimalSubTypeRepository animalSubtypeRepository, DapperContext context, IConnectionMultiplexer redisConnection, CreateMD5Hash createMD5Hash, ICompanyUserMappingRepository companyUserMappingRepository)
         {
             _animalSubtypeRepository = animalSubtypeRepository;
             _context = context;

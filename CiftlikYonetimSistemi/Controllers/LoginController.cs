@@ -25,7 +25,6 @@ namespace CiftlikYonetimSistemi.Controllers
 		}
 
 		[HttpPost]
-		[HttpPost]
 		public async Task<IActionResult> Login(LoginDTO loginDTO)
 		{
 			if (loginDTO.Email != "" && loginDTO.Password != "")
