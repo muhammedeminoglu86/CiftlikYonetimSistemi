@@ -35,15 +35,24 @@ namespace CiftlikYonetimSistemi.WebApi.Controller
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUserById(int id)
-        {
-            var user = await _userService.GetOne("select * from User where id = @id", new {id = id}); 
-            if (user == null)
-                return NotFound();
-            user.Password = null;
-            return Ok(user);
-        }
+        [HttpGet("{id}/{email}")]
+		public async Task<IActionResult> GetUserById(int id, string email)
+		{
+			User user = null;
+			if (id != -1)
+			{
+				user = await _userService.GetOne("select * from User where id = @id", new { id = id });
+			}
+			else
+			{
+				user = await _userService.GetOne("select * from User where email = @email", new { email });
+			}
+
+			if (user == null)
+				return NotFound();
+			user.Password = null;
+			return Ok(user);
+		}
 
         [HttpPost]
         public async Task<IActionResult> CreateUser(UserDto user)
